@@ -35,28 +35,28 @@ fname <- list.files("Samples/greenlandSamples", full.names = T) ###1:28
       })
       
       # Unlist the reformattedData list into matrix (each of the 28 elements has one row of 3697 wavenumber values)
-      wavenumber2 <- lapply(reformattedData, names) 
+      wavenumber_matrix <- lapply(reformattedData, names) 
       
       # convert matrix into dataframe [28:3697]
-      wavenumber <- as.data.frame(do.call("rbind",wavenumber2))
+      wavenumber_df <- as.data.frame(do.call("rbind",wavenumber_matrix))
       
       # add row names permanently
-      wavenumber$dataset <- row.names(wavenumber) ## make this a specific column, don't trust it to store
+      wavenumber_df$dataset <- row.names(wavenumber_df) ## make this a specific column, don't trust it to store
       
       # creating new list of df where there aren't any wavenumbers...only absorbance values [1:3697]
-      absorbanceValues2 <- lapply(reformattedData, dropNames)
+      absorbance_matrix <- lapply(reformattedData, dropNames)
       
       # Dataframe of [28:3697]where absorbance values are in cells
       ##need to resolve mismatch in wavenumbers before moving forward
-      absorbanceValue <- do.call(rbind.data.frame, absorbanceValues2)
+      absorbance_df <- do.call(rbind.data.frame, absorbance_matrix)
       
       ## adds column for each row to remind us which file it is
-      absorbanceValue$dataset <- names(filelist)
+      absorbance_df$dataset <- names(filelist)
       
       ## Make data sample name in first column
-      wavenumber <- wavenumber[,c(ncol(wavenumber),1:(ncol(wavenumber)-1))]
+      wavenumber <- wavenumber_df[,c(ncol(wavenumber_df),1:(ncol(wavenumber_df)-1))]
       
-      absorbance <- absorbanceValue[,c(ncol(absorbanceValue),1:(ncol(absorbanceValue)-1))]
+      absorbance <- absorbance_df[,c(ncol(absorbance_df),1:(ncol(absorbance_df)-1))]
       
       ## returning the waveNumberInfo too
       return(list(absorbance = absorbance, wavenumber = wavenumber))
