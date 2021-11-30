@@ -11,12 +11,12 @@ library(ggplot2)
 
 # Load Absorbance Data----
   #Load data with wet chem bsi % and absorbance values
-  data <- read_csv("csvFiles/resolvedSampleNames-2.csv")
-  dim(data) # 28 3699
-  names(data)
+  wetChemAbsorbance <- read_csv("csvFiles/wetChemAbsorbance.csv")
+  dim(wetChemAbsorbance) # 28 3699
+  names(wetChemAbsorbance)
   
   #Isolate actual BSi percent from wet chem lab data
-  actual_bsi_wetchem <- data %>%
+  actual_bsi_wetchem <- wetChemAbsorbance %>%
     select(dataset, BSiPercent)
   dim(actual_bsi_wetchem) #28  2
   
@@ -37,13 +37,13 @@ library(ggplot2)
   #Rerun pls model; cv depends on number of samples
       
     #Full spectrum
-      pls2 <- plsr(BSiPercent~., ncomp = 10, data=data, validation = "CV", segments = 5)
+      plsModel <- plsr(BSiPercent~., ncomp = 10, data=wetChemAbsorbance, validation = "CV", segments = 5)
     #Interval
   #  pls2 <- plsr(BSiPercent~., ncomp = 10, data=data[c(2,3642:3664)], validation = "CV", segments = 5)
 #Create dataframe with actual and predicted BSi percentages----
    
       #Predicted BSi for 10 components
-      predicted_bsi <- as.data.frame(pls2$fitted.values)
+      predicted_bsi <- as.data.frame(plsModel$fitted.values)
       dim(predicted_bsi) ### 28 10
       
       #select model with 3 components
