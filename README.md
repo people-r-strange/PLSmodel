@@ -8,23 +8,23 @@ Biogenic Silica (BSi) is used as a proxy for past temperatures in High Arctic se
 
 The repository is organized into the following four folders: 
 
-* Code
+* [Code](https://github.com/people-r-strange/PLSmodel/tree/main/Code)
 
-* csvFiles
+* [csvFiles]
 
-* dataViz
+* [dataViz](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz)
 
-* Samples
+* [Samples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples)
 
 ### Code 
 
 The code folder contains four scripts: 
 
-* 01_createDataFrameScript.R : This code takes the offloaded OPUS files and reformats them into a suitable data frame for the PLS model 
+* [01_createDataFrameScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/01_createDataFrameScript.R): This code takes the offloaded OPUS files and reformats them into a suitable data frame for the PLS model 
 
-* 01_createDataFrame.R : This code does the same thing as the aforementioned script, only this code includes function which allow for more efficient processing
+* [01_createDataFrame.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/01_createDataFrame.R) : This code does the same thing as the aforementioned script, only this code includes function which allow for more efficient processing
 
-* 02_createModelScript.R : This code loads the data frame created in the first script, inputs the dataframe into the PLS model, creates an RMSEP curve and loading plots. 
+* [02_createModelScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/02_createModelScript.R) : This code loads the data frame created in the first script, inputs the dataframe into the PLS model, creates an RMSEP curve and loading plots. 
 
-* 03_modelAccuracy.R : This code assess the model accuracy by creating two plots: (1) plot that compares the actual percentages of BSi to the predicted percentages of BSI; (2) plot that calculates the residuals (actual minus observed) and detects any overfitting and underfitting 
+* [03_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R) : This code assess the model accuracy by creating two plots: (1) plot that compares the actual percentages of BSi to the predicted percentages of BSI; (2) plot that calculates the residuals (actual minus observed) and detects any overfitting and underfitting 
 
