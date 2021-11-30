@@ -2,7 +2,7 @@
 library(tidyverse)
 
 ## read in txt files automatically----
-fname <- list.files("OPUS", full.names = T) ###1:28
+fname <- list.files("Samples/greenlandSamples", full.names = T) ###1:28
 
 ##FUNCTION 1: Add Sample Names----
   
@@ -35,75 +35,70 @@ fname <- list.files("OPUS", full.names = T) ###1:28
       })
       
       # Unlist the reformattedData list into matrix (each of the 28 elements has one row of 3697 wavenumber values)
-      allNames <- lapply(reformattedData, names) 
+      wavenumber2 <- lapply(reformattedData, names) 
       
       # convert matrix into dataframe [28:3697]
-      allNames2 <- as.data.frame(do.call("rbind",allNames))
+      wavenumber <- as.data.frame(do.call("rbind",wavenumber2))
       
       # add row names permanently
-      allNames2$dataset <- row.names(allNames2) ## make this a specific column, don't trust it to store
+      wavenumber$dataset <- row.names(wavenumber) ## make this a specific column, don't trust it to store
       
       # creating new list of df where there aren't any wavenumbers...only absorbance values [1:3697]
-      reformattedData2 <- lapply(reformattedData, dropNames)
+      absorbanceValues2 <- lapply(reformattedData, dropNames)
       
       # Dataframe of [28:3697]where absorbance values are in cells
       ##need to resolve mismatch in wavenumbers before moving forward
-      newData <- do.call(rbind.data.frame, reformattedData2)
+      absorbanceValue <- do.call(rbind.data.frame, absorbanceValues2)
       
       ## adds column for each row to remind us which file it is
-      newData$dataset <- names(filelist)
+      absorbanceValue$dataset <- names(filelist)
       
       ## Make data sample name in first column
-      newData <- newData[,c(ncol(newData),1:(ncol(newData)-1))]
+      wavenumber <- wavenumber[,c(ncol(wavenumber),1:(ncol(wavenumber)-1))]
       
-      allNames2 <- allNames2[,c(ncol(allNames2),1:(ncol(allNames2)-1))]
+      absorbance <- absorbanceValue[,c(ncol(absorbanceValue),1:(ncol(absorbanceValue)-1))]
       
       ## returning the waveNumberInfo too
-      return(list(newData = newData, waveNumberInfo = allNames2))
+      return(list(absorbance = absorbance, wavenumber = wavenumber))
     }
   
   
  output <- transform_df(filelist) ###1:28
   
   #write csv files 
-  write.csv(output$newData, "transformedData.csv", row.names = F)
-  write.csv(output$waveNumberInfo, "waveNumberInfo.csv", row.names = F)
+ # write.csv(output$absorbance, "csvFiles/absorbance.csv", row.names = F)
+ # write.csv(output$wavenumber, "csvFiles/wavenumber.csv", row.names = F)
   
 ##FUNCTION 4: Add Calibration Data ----
   
     #Read in calibration csv with same number of samples as our transformedData 
-    wet_chem_data <- read_csv("csvFiles/resolved-sample-name.csv") ###28
+    wet_chem_data <- read_csv("csvFiles/wet-chem-data.csv") ###28
   
     #Read in absorbance values for each sample
-    transformedData <- read_csv("csvFiles/transformedData.csv") ###28:3698
+    absorbance <- read_csv("csvFiles/absorbance.csv") ###28:3698
     
-    addWetChem <- function(transformedData) {
-      ## Check if sample names are present 
-      names(transformedData)[ncol(transformedData)] 
-      
-      ## rearranging so dataset id is first, should do this in the transformating function instead moving forward
-      transformedData <- cbind.data.frame(dataset = transformedData$dataset, transformedData[,-ncol(transformedData)]) 
+    addWetChem <- function(absorbance) {
       
       #Rename wet_chem_data columns 
       names(wet_chem_data)[1] <- "dataset"
       names(wet_chem_data)[2] <- "BSiPercent"
       
       #bind calibration data to transformed data
-      Complete_data <- full_join(wet_chem_data, transformedData, by = "dataset")
+      wetChemAbsorbance <- full_join(wet_chem_data, absorbance, by = "dataset")
       
       ## this replaces .0 with a space, the backslashes escape the special character . in regular expressions
-      Complete_data$dataset = gsub("\\.0","",Complete_data$dataset) 
+      wetChemAbsorbance$dataset = gsub("\\.0","",wetChemAbsorbance$dataset) 
       
       ## this replaces cm with a space, the backslashes escape the special character . in regular expressions
-      Complete_data$dataset = gsub("cm","",Complete_data$dataset)
+      wetChemAbsorbance$dataset = gsub("cm","",wetChemAbsorbance$dataset)
       
-      return(Complete_data)
+      return(wetChemAbsorbance)
     }
     
-    Data <- addWetChem(transformedData) ###28:3699
+    wetChemAbsorbance <- addWetChem(absorbance) ###28:3699
     
     #Write csv file 
-    write.csv(Data,"csvFiles/resolvedSampleNames-2.csv",row.names=F)
+    write.csv(wetChemAbsorbance,"csvFiles/wetChemAbsorbance.csv",row.names=F)
     
     
     
