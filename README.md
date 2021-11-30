@@ -25,7 +25,7 @@ The repository is organized into the following four folders:
 
   - [Code](https://github.com/people-r-strange/PLSmodel/tree/main/Code)
 
-  - \[csvFiles\]
+  - [csvFiles](https://github.com/people-r-strange/PLSmodel/tree/main/csvFiles)
 
   - [dataViz](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz)
 
@@ -52,13 +52,30 @@ The code folder contains four scripts:
   - [03\_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R)
     : This code assess the model accuracy by creating two plots: (1)
     plot that compares the actual percentages of BSi to the predicted
-    percentages of BSI; (2) plot that calculates the residuals (actual
+    percentages of BSi; (2) plot that calculates the residuals (actual
     minus observed) and detects any overfitting and underfitting
+
+### csvFiles
+
+This folder contains all of the generated csv files.
+
+  - [absorbance.csv](https://github.com/people-r-strange/PLSmodel/blob/main/csvFiles/absorbance.csv)
+    : Absorbance values
+
+  - [wavenumber.csv](https://github.com/people-r-strange/PLSmodel/blob/main/csvFiles/wavenumber.csv)
+    : Wavenumber values
+
+  - [wet-chem-data.csv](https://github.com/people-r-strange/PLSmodel/blob/main/csvFiles/wet-chem-data.csv)
+    : BSi percentages that were calculated using the wet chemical
+    digestion method. These are considered the “actual” BSi values.
+
+  - [wetChemAbsorbance.csv](https://github.com/people-r-strange/PLSmodel/blob/main/csvFiles/wetChemAbsorbance.csv)
+    : This contains the “actual” BSi values and the absorbance values.
+    This dataset is what is inputted into the PLS model.
 
 ### dataViz
 
-The data viz folder contains all of the relevant data visualizations.
-Within this folder there are four additional sub-folders:
+This folder is divided into four sub-folders:
 
   - [crossValidation](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz/Greenland/crossValidation)
 
@@ -70,15 +87,15 @@ Within this folder there are four additional sub-folders:
 
 Within each of these folders, there are visualizations for:
 
-  - full spectrum: 7500 - \(368cm^{-1}\)
+  - full spectrum: 7500 - 368cm^{-1}
 
-  - truncated spectrum: 3750 - \(368cm^{-1}\)
+  - truncated spectrum: 3750 - 368cm^{-1}
 
-  - specific spectrum: 435 - \(480cm^{-1}\)
+  - specific spectrum: 435 - 480cm^{-1}
 
-  - specific spectrum : 790 - \(830cm^{-1}\)
+  - specific spectrum : 790 - 830cm^{-1}
 
-  - specific spectrum : 1050 - \(1280cm^{-1}\)
+  - specific spectrum : 1050 - 1280cm^{-1}
 
 ### Samples
 
@@ -87,3 +104,46 @@ For the samples folder there are two subfolders. The
 folder contains the 100 alaskan samples. The
 [greenlandSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/greenlandSamples)
 contains the 28 samples from Greenland.
+
+## III. Objectives
+
+The first step in this project was to create a PLS model using 28
+samples from Greenland.
+
+Currently, 100 samples from Alaska are being run and the goal is to
+input those 100 samples into the Greenland model and predict BSi
+percentages. However, there is a resolution error between the Greenland
+samples and the Alaskan samples, which require interpolation.
+
+Once the Alaskan sample resolution issue has been resolved, the next
+step to is begin answering some of our questions.
+
+### Questions we’d like to answer
+
+1.  Specific Spectrum vs. All Spectrum: Is it beneficial to run the
+    calibration model over a specific portion of the spectrum versus the
+    entire spectrum? If so, which portion of the spectrum should we use?
+    -\> We’ve determined that it is more beneficial to run the model on
+    a specific portion of the spectrum (3750 - 368 cm^-1)
+
+2.  Recommended number of samples: Can we pinpoint the recommended
+    number of samples required to run the calibration model?
+
+3.  Universal Preprocessing: Can all of the data be preprocessed in the
+    same way, or do we need to provide our user with various options for
+    preprocessing the data?
+
+4.  Transferable Results: How transferable are these results from one
+    lake site to another? Do we observe a difference between cold and
+    warm climates? What about at different localities within a cold
+    climate?
+
+5.  Marine cores: How is this all transferable to the marine
+    environment?
+
+## IV. End Goal
+
+The end goal is to create a Shiny App that would allow
+paleoclimatologists and other users to upload their list of lake
+sediment core files, run them through the calibration model and download
+the predicted percentages of BSi.
