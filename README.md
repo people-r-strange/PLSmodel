@@ -42,15 +42,15 @@ The data viz folder contains all of the relevant data visualizations. Within thi
 
 Within each of these folders, there are visualizations for: 
 
-* full spectrum: $~7500 - 368 cm^-1$ 
+* full spectrum: $~7500 - 368 cm^{-1}$ 
 
-* truncated spectrum: $3750 - 368 cm^-1$
+* truncated spectrum: $3750 - 368 cm^{-1}$
 
-* specific spectrum: $435 - 480 cm^-1$
+* specific spectrum: $435 - 480 cm^{-1}$
 
-* specific spectrum : $790 - 830 cm^-1$
+* specific spectrum : $790 - 830 cm^{-1}$
 
-* specific spectrum : $1050 - 1280 cm^-1$
+* specific spectrum : $1050 - 1280 cm^{-1}$
 
 ###  Samples 
 
