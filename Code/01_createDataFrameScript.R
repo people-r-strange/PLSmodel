@@ -20,19 +20,19 @@ names(filelist) <- gsub(".*/(.*)\\..*", "\\1", fname)
 reformattedData <- lapply(filelist, function(x){pivot_wider(x, names_from = V1, values_from = V2)})
 
 # Unlist the reformattedData list into matrix (each of the 28 elements has one row of 3697 wavenumber values)
-wavenumber2 <- lapply(reformattedData, names)
+wavenumber_matrix <- lapply(reformattedData, names)
 
 # convert matrix into dataframe [28:3697]
-wavenumber <- as.data.frame(do.call("rbind",wavenumber2))
-(wavenumber$V1) #3996.31543 ALASKA
-(wavenumber$V1882) #368.38622 ALASKA
+wavenumber_df <- as.data.frame(do.call("rbind",wavenumber_matrix))
+(wavenumber_df$V1) #3996.31543 ALASKA
+(wavenumber_df$V1882) #368.38622 ALASKA
 
-(wavenumber$V1) #7496.97825 // 7496.94889 GREENLAND
-(wavenumber$V3697) #368.38766 GREENLAND
+(wavenumber_df$V1) #7496.97825 // 7496.94889 GREENLAND
+(wavenumber_df$V3697) #368.38766 GREENLAND
 
 
 # add row names permanently
-wavenumber$dataset <- names(filelist) ## make this a specific column, don't trust it to store
+wavenumber_df$dataset <- names(filelist) ## make this a specific column, don't trust it to store
 
 #Rename column header from "wavenumbers" to "Vi" (FUNCTION #3)
 dropNames <- function(data){
@@ -41,11 +41,11 @@ dropNames <- function(data){
 }
 
 # creating new list of df where there aren't any wavenumbers...only absorbance values [1:3697]
-absorbanceValues2 <- lapply(reformattedData, dropNames)
+absorbance_matrix <- lapply(reformattedData, dropNames)
 
 # Dataframe of [28:3697]where absorbance values are in cells
 ##need to resolve mismatch in wavenumbers before moving forward
-absorbanceValue <- do.call(rbind.data.frame,absorbanceValues2)
+absorbance_df <- do.call(rbind.data.frame,absorbance_matrix)
 
 lapply(reformattedData, ncol) %>% unlist() %>% summary()
 
@@ -56,15 +56,15 @@ lapply(reformattedData, ncol) %>% unlist() %>% summary()
 ###AW-34.5 (8_31_16).0  AW-7.5 (8_31_16).0   AW-73 (8_31_16).0 
 
 ## adds column for each row to remind us which file it is
-absorbanceValue$dataset <- names(filelist)
+absorbance_df$dataset <- names(filelist)
 
 ## Make data sample name in first column
-wavenumber <- wavenumber[,c(ncol(wavenumber),1:(ncol(wavenumber)-1))] ### 28:3698
+wavenumber <- wavenumber_df[,c(ncol(wavenumber_df),1:(ncol(wavenumber_df)-1))] ### 28:3698
 
-absorbance <- absorbanceValue[,c(ncol(absorbanceValue),1:(ncol(absorbanceValue)-1))] ### 28:3698
+absorbance <- absorbance_df[,c(ncol(absorbance_df),1:(ncol(absorbance_df)-1))] ### 28:3698
 
+#write csv
 write.csv(wavenumber, "csvFiles/wavenumber.csv")
-
 write.csv(absorbance, "csvFiles/absorbance.csv")
 
 ###Components of Function 4-----
