@@ -28,3 +28,30 @@ The code folder contains four scripts:
 
 * [03_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R) : This code assess the model accuracy by creating two plots: (1) plot that compares the actual percentages of BSi to the predicted percentages of BSI; (2) plot that calculates the residuals (actual minus observed) and detects any overfitting and underfitting 
 
+### dataViz
+
+The data viz folder contains all of the relevant data visualizations. Within this folder there are four additional sub-folders: 
+
+* [crossValidation](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz/Greenland/crossValidation)
+
+* [LoadingPlots](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz/Greenland/LoadingPlots)
+
+* [modelAccuracy](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz/Greenland/modelAccuracy)
+
+* [residuals](https://github.com/people-r-strange/PLSmodel/tree/main/dataViz/Greenland/residuals)
+
+Within each of these folders, there are visualizations for: 
+
+* full spectrum: $~7500 - 368 cm^-1$ 
+
+* truncated spectrum: $3750 - 368 cm^-1$
+
+* specific spectrum: $435 - 480 cm^-1$
+
+* specific spectrum : $790 - 830 cm^-1$
+
+* specific spectrum : $1050 - 1280 cm^-1$
+
+###  Samples 
+
+For the samples folder there are two subfolders. The [alaskaSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/alaskaSamples) folder contains the 100 alaskan samples. The [greenlandSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/greenlandSamples) contains the 28 samples from Greenland. 
