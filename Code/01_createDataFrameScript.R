@@ -77,3 +77,16 @@ absorbance <- read_csv("csvFiles/absorbance.csv") ###28:3698
 #Rename wet_chem_data columns 
 names(wet_chem_data)[1] <- "dataset"
 names(wet_chem_data)[2] <- "BSiPercent"
+
+#bind calibration data to transformed data
+wetChemAbsorbance <- full_join(wet_chem_data, absorbance, by = "dataset")
+
+## this replaces .0 with a space, the backslashes escape the special character . in regular expressions
+wetChemAbsorbance$dataset = gsub("\\.0","",wetChemAbsorbance$dataset) 
+
+## this replaces cm with a space, the backslashes escape the special character . in regular expressions
+wetChemAbsorbance$dataset = gsub("cm","",wetChemAbsorbance$dataset)
+
+#Write csv file 
+write.csv(wetChemAbsorbance,"csvFiles/wetChemAbsorbance.csv",row.names=F)
+
