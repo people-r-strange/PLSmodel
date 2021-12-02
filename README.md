@@ -5,6 +5,14 @@ Vivienne Maxwell
 
 # Predicting Biogenic Silica percentages in lake sediment cores from High Arctic settings
 
+Contributors
+
+  - [Vivienne Maxwell](https://github.com/people-r-strange)
+
+  - [Dr. Stoudt](https://github.com/sastoudt)
+
+  - [Dr. de Wet](https://www.smith.edu/academics/faculty/greg-de-wet)
+
 ## I. Background
 
 Biogenic Silica (BSi) is used as a proxy for past temperatures in High
@@ -110,10 +118,10 @@ contains the 28 samples from Greenland.
 The first step in this project was to create a PLS model using 28
 samples from Greenland.
 
-Currently, 100 samples from Alaska are being run and the goal is to
-input those 100 samples into the Greenland model and predict BSi
-percentages. However, there is a resolution error between the Greenland
-samples and the Alaskan samples, which require interpolation.
+Currently, the goal is to input 100 Alaskan samples into the Greenland
+model and predict BSi percentages. However, there is a resolution error
+between the Greenland samples and the Alaskan samples, which require
+interpolation.
 
 Once the Alaskan sample resolution issue has been resolved, the next
 step to is begin answering some of our questions.
