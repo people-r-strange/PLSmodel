@@ -27,7 +27,50 @@ absorbance spectra into percentages of BSi and TOC so as to provide
 paleoclimatologists with a more universal way of analyzing and
 understanding their results.
 
-## II. Repo Organization
+## II. Objectives
+
+The first step in this project was to create a PLS model using 28
+samples from Greenland.
+
+Currently, the goal is to input 100 Alaskan samples into the Greenland
+model and predict BSi percentages. However, there is a resolution error
+between the Greenland samples and the Alaskan samples, which require
+interpolation.
+
+Once the Alaskan sample resolution issue has been resolved, the next
+step to is begin answering some of our questions.
+
+### Questions we’d like to answer
+
+1.  Specific Spectrum vs. All Spectrum: Is it beneficial to run the
+    calibration model over a specific portion of the spectrum versus the
+    entire spectrum? If so, which portion of the spectrum should we use?
+    -\> We’ve determined that it is more beneficial to run the model on
+    a specific portion of the spectrum (3750 - 368 cm^-1)
+
+2.  Recommended number of samples: Can we pinpoint the recommended
+    number of samples required to run the calibration model?
+
+3.  Universal Preprocessing: Can all of the data be preprocessed in the
+    same way, or do we need to provide our user with various options for
+    preprocessing the data?
+
+4.  Transferable Results: How transferable are these results from one
+    lake site to another? Do we observe a difference between cold and
+    warm climates? What about at different localities within a cold
+    climate?
+
+5.  Marine cores: How is this all transferable to the marine
+    environment?
+
+## III. End Goal
+
+The end goal is to create a Shiny App that would allow
+paleoclimatologists and other users to upload their list of lake
+sediment core files, run them through the calibration model and download
+the predicted percentages of BSi.
+
+## IV. Repo Organization
 
 The repository is organized into the following four folders:
 
@@ -112,46 +155,3 @@ For the samples folder there are two subfolders. The
 folder contains the 100 alaskan samples. The
 [greenlandSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/greenlandSamples)
 contains the 28 samples from Greenland.
-
-## III. Objectives
-
-The first step in this project was to create a PLS model using 28
-samples from Greenland.
-
-Currently, the goal is to input 100 Alaskan samples into the Greenland
-model and predict BSi percentages. However, there is a resolution error
-between the Greenland samples and the Alaskan samples, which require
-interpolation.
-
-Once the Alaskan sample resolution issue has been resolved, the next
-step to is begin answering some of our questions.
-
-### Questions we’d like to answer
-
-1.  Specific Spectrum vs. All Spectrum: Is it beneficial to run the
-    calibration model over a specific portion of the spectrum versus the
-    entire spectrum? If so, which portion of the spectrum should we use?
-    -\> We’ve determined that it is more beneficial to run the model on
-    a specific portion of the spectrum (3750 - 368 cm^-1)
-
-2.  Recommended number of samples: Can we pinpoint the recommended
-    number of samples required to run the calibration model?
-
-3.  Universal Preprocessing: Can all of the data be preprocessed in the
-    same way, or do we need to provide our user with various options for
-    preprocessing the data?
-
-4.  Transferable Results: How transferable are these results from one
-    lake site to another? Do we observe a difference between cold and
-    warm climates? What about at different localities within a cold
-    climate?
-
-5.  Marine cores: How is this all transferable to the marine
-    environment?
-
-## IV. End Goal
-
-The end goal is to create a Shiny App that would allow
-paleoclimatologists and other users to upload their list of lake
-sediment core files, run them through the calibration model and download
-the predicted percentages of BSi.
