@@ -30,7 +30,7 @@ The repository is organized into the following four folders:
 
 * [Samples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples)
 
-### Code 
+### `Code`
 
 The code folder contains four scripts: 
 
@@ -42,7 +42,7 @@ The code folder contains four scripts:
 
 * [03_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R) : This code assess the model accuracy by creating two plots: (1) plot that compares the actual percentages of BSi to the predicted percentages of BSi; (2) plot that calculates the residuals (actual minus observed) and detects any overfitting and underfitting 
 
-### csvFiles 
+### `csvFiles` 
 
 This folder contains all of the generated csv files. 
 
@@ -54,7 +54,7 @@ This folder contains all of the generated csv files.
 
 * [wetChemAbsorbance.csv](https://github.com/people-r-strange/PLSmodel/blob/main/csvFiles/wetChemAbsorbance.csv) : This contains the "actual" BSi values and the absorbance values. This dataset is what is inputted into the PLS model. 
 
-### dataViz
+### `dataViz`
 
 This folder is divided into four sub-folders: 
 
@@ -78,7 +78,7 @@ Within each of these folders, there are visualizations for:
 
 * specific spectrum : 1050 - 1280cm^{-1}
 
-###  Samples 
+###  `Samples` 
 
 For the samples folder there are two subfolders. The [alaskaSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/alaskaSamples) folder contains the 100 alaskan samples. The [greenlandSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/greenlandSamples) contains the 28 samples from Greenland. 
 

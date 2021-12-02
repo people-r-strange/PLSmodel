@@ -39,7 +39,7 @@ The repository is organized into the following four folders:
 
   - [Samples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples)
 
-### Code
+### `Code`
 
 The code folder contains four scripts:
 
@@ -63,7 +63,7 @@ The code folder contains four scripts:
     percentages of BSi; (2) plot that calculates the residuals (actual
     minus observed) and detects any overfitting and underfitting
 
-### csvFiles
+### `csvFiles`
 
 This folder contains all of the generated csv files.
 
@@ -81,7 +81,7 @@ This folder contains all of the generated csv files.
     : This contains the “actual” BSi values and the absorbance values.
     This dataset is what is inputted into the PLS model.
 
-### dataViz
+### `dataViz`
 
 This folder is divided into four sub-folders:
 
@@ -105,7 +105,7 @@ Within each of these folders, there are visualizations for:
 
   - specific spectrum : 1050 - 1280cm^{-1}
 
-### Samples
+### `Samples`
 
 For the samples folder there are two subfolders. The
 [alaskaSamples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples/alaskaSamples)
