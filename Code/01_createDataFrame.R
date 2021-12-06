@@ -18,6 +18,8 @@ fname <- list.files("Samples/greenlandSamples", full.names = T) ###1:28
   #Save list of txt files with sample names
   filelist <- addSampleNames(fname) ###28
   
+##Magical interpolation function [here]
+  
 ##FUNCTION 2: Rename column header from "wavenumbers" to "Vi"----
   
   dropNames <- function(data) {
