@@ -55,17 +55,41 @@ The repository is organized into the following four folders:
 
 * [Samples](https://github.com/people-r-strange/PLSmodel/tree/main/Samples)
 
+### R Set-Up
+
+In order to run the necessary code, you will need the following R packages: 
+
+* `tidyverse` 
+
+* `pls` 
+
+* `scales`
+
+* `readr`
+
+* `Metrics`
+
+* `ggplot2`
+
+* `moderndive`
+
+Use the `install.packages(" ")` function to install the packages. Use the `library()` function to load the packages. 
+
 ### `Code`
 
-The code folder contains four scripts: 
+The code is separated into three different scripts. 
 
-* [01_createDataFrameScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/01_createDataFrameScript.R): This code takes the offloaded OPUS files and reformats them into a suitable data frame for the PLS model 
+* [01_createDataFrameScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/01_createDataFrameScript.R)
 
-* [01_createDataFrame.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/01_createDataFrame.R) : This code does the same thing as the aforementioned script, only this code includes function which allow for more efficient processing
+The code loads the OPUS files into R, creates two separate dataframes (one consists of wavenumbers and the other consists of absorbance values), and adds the actual BSi percentages to the absorbance dataframe. 
 
-* [02_createModelScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/02_createModelScript.R) : This code loads the data frame created in the first script, inputs the dataframe into the PLS model, creates an RMSEP curve and loading plots. 
+* [02_createModelScript.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/02_createModelScript.R) 
 
-* [03_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R) : This code assess the model accuracy by creating two plots: (1) plot that compares the actual percentages of BSi to the predicted percentages of BSi; (2) plot that calculates the residuals (actual minus observed) and detects any overfitting and underfitting 
+This code loads the absorbance data that contains the actual BSi percentages. That data is run through the partial least squares regression model. After the model is run, you create a root mean squared error plot (RMSEP) to determine the number of components. Then you load in the wavenumber data and combine it with the loadings from the first three components of the pls model. Once the dataframe is created, you can generate the loading plot to determine the parts of the spectrum that are most heavily weighted in the model. 
+
+* [03_modelAccuracy.R](https://github.com/people-r-strange/PLSmodel/blob/main/Code/03_modelAccuracy.R)
+
+The final script assess the model's prediction accuracy in two ways. You will calculate the regression error, which is the predicted BSi percentages minus the actual BSi percentages. Then there is code for two visualizations. The first is a comparison of the regression error; it is a side-by-side of the actual BSi percentage versus the predicted BSi percentage for each sample. The second visualization shows you where the model is overpredicting (green) and underpredicting (red). 
 
 ### `csvFiles` 
 
